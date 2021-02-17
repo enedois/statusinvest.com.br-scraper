@@ -18,7 +18,7 @@ import mysql.connector
 stocksList = open('FIIsList_Carteira.csv', 'r')
 #papeis = stocksList.read().split(';')
 #print(papeis)
-papeis = ["xppr11"]
+#papeis = ["xppr11"]
 stocksList.close()
 
 def getpapel(papel_):
@@ -35,31 +35,20 @@ def getpapel(papel_):
                     #cabecalho
                     table_head = result[0].find_all('th')
 
-                    for row in table_head:
-                        print (row.getText().strip())
+                    #for row in table_head:
+                        #print (row.getText().strip())
 
                     #dados    
                     table_body = result[0].find_all('tr')
                     for row in table_body:
                         dados = row.find_all('td')
-                        result = ""
+                        result = papel_+"*"
                         for dado in dados:
-                            result = result+(dado.getText().strip())+"-"
+                            result = result+(dado.getText().strip())+"*"
                             #print(dado.getText().strip())
-                        print (result)
-                    #alldata = []
-                    
-                    
-                    #print(table_head)
-                    
-                    #for row in result[0]:
-                        #print((row))
-                        #columns = (row.get_text().replace("\n", " ").replace("R$ ", "").strip().split(" "))
-                        #alldata.append(columns)
-                        #print(columns)
+                        print(result)
+
                         
-                    alldata.pop(0)#remove o cabecalho
-                    
                     #for row in alldata:
                         #print(papel_+" - "+row[1]+" - "+row[4])
                         #data_atual = datetime.datetime.strptime(row[1], "%d/%m/%y")
